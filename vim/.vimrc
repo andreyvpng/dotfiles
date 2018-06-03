@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'davidhalter/jedi-vim'
 	Plug 'chriskempson/base16-vim'
+	Plug 'mattn/emmet-vim'
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>

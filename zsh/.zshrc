@@ -75,6 +75,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # User configuration
 export TERM=xterm-256color
 
+eval "`dircolors -b $HOME/.lscolors`"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
