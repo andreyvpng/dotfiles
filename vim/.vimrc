@@ -1,39 +1,32 @@
 call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'davidhalter/jedi-vim'
-	Plug 'chriskempson/base16-vim'
-	Plug 'mattn/emmet-vim'
+    Plug 'chriskempson/base16-vim'
+    Plug 'mattn/emmet-vim'
+    "Plug 'klen/python-mode'
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
 
 syntax on
-
-set nocompatible
-
-set cindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+" enable syntax highlighting
+syntax enable
+" show line numbers
+set number
+" set tabs to have 4 spaces
+set ts=4
+" indent when moving to the next line while writing code
 set autoindent
+" expand tabs into spaces
 set expandtab
-set smartindent
-set textwidth=80
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-
-set nu
-set linebreak
-set hidden
-set incsearch
-set history=50
-
-set clipboard+=unnamed  " use the clipboards of vim and win
-set paste               " Paste from a windows or from vim
-set go+=a 
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
+" show a visual line under the cursor's current line
+set cursorline
+" show the matching part of the pair for [] {} and ()
+set showmatch
+" disable folding 
+set nofoldenable
 
 map <C-C> "+y
 map <C-P> "+p
