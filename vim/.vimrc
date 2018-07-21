@@ -1,13 +1,18 @@
 call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'davidhalter/jedi-vim'
-    Plug 'chriskempson/base16-vim'
     Plug 'mattn/emmet-vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'easymotion/vim-easymotion'
     "Plug 'klen/python-mode'
+    "colorschemes
+    Plug 'chriskempson/base16-vim'
 call plug#end()
 
-map <C-n> :NERDTreeToggle<CR>
-
+set wrap 
+ 
 syntax on
 " enable syntax highlighting
 syntax enable
@@ -28,8 +33,33 @@ set showmatch
 " disable folding 
 set nofoldenable
 
+let mapleader=","
+
 map <C-C> "+y
 map <C-P> "+p
+
+map <C-n> :NERDTreeToggle<CR>
+
+map <Leader> <Plug>(easymotion-prefix)
+
+map <silent> <C-h> :call WinMove('h')<CR>
+map <silent> <C-j> :call WinMove('j')<CR>
+map <silent> <C-k> :call WinMove('k')<CR>
+map <silent> <C-l> :call WinMove('l')<CR>
+
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key, '[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
@@ -39,4 +69,3 @@ endif
 set clipboard=unnamedplus
 
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
-
