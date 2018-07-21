@@ -12,7 +12,10 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 set wrap 
- 
+
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
+
 syntax on
 " enable syntax highlighting
 syntax enable
