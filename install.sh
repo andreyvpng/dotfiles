@@ -1,5 +1,5 @@
 echo 'Installing packages'
-sudo apt-get install stow vim-python zsh tmux
+sudo apt-get install curl stow vim-python zsh tmux
 
 echo 'Installing oh-my-zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -15,3 +15,8 @@ stow vim
 echo 'Installing TPM'
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 stow tmux
+
+echo 'Installing colorscheme'
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+zsh
+base16_gruvbox-dark-hard
