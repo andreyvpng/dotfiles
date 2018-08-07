@@ -1,20 +1,35 @@
+"=====================================================
+" Plugins
+"=====================================================
+
 call plug#begin('~/.vim/plugged')
+    " Project navigation
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    Plug 'davidhalter/jedi-vim'
+    Plug 'majutsushi/tagbar'
+    Plug 'easymotion/vim-easymotion'
+    " HTML
     Plug 'mattn/emmet-vim'
+    " Git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    " Other
     Plug 'jiangmiao/auto-pairs'
-    Plug 'easymotion/vim-easymotion'
-    "Plug 'klen/python-mode'
+    Plug 'ervandew/supertab'
+    " Zen
+    Plug 'junegunn/goyo.vim'
+    Plug 'amix/vim-zenroom2'
+    " Python
+    Plug 'davidhalter/jedi-vim'
+    Plug 'klen/python-mode'
     "colorschemes
     Plug 'chriskempson/base16-vim'
 call plug#end()
 
+"=====================================================
+" General settings
+"=====================================================
+"
 set wrap 
-
-let NERDTreeDirArrowExpandable='+'
-let NERDTreeDirArrowCollapsible='~'
 
 syntax on
 " enable syntax highlighting
@@ -36,12 +51,33 @@ set showmatch
 " disable folding 
 set nofoldenable
 
-"let maplader=","
+set clipboard=unnamedplus
+" auto apply settings after save vimrc
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+
+"=====================================================
+" Mapping
+"=====================================================
 
 map <C-C> "+y
 map <C-P> "+p
+nmap <F8> :TagbarToggle<CR>
+map <C-T> :tabnew<CR>
+"map <C-W> :tabclose<CR>
+"map <C-TAB> :tabnext<CR>
+map <leader>z :Goyo<CR>
+
+"=====================================================
+" NERDTree
+"=====================================================
 
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
+
+"=====================================================
+" EasyMotion
+"=====================================================
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -61,6 +97,10 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)"
 
+"=====================================================
+" WinMove
+"=====================================================
+
 map <silent> <C-h> :call WinMove('h')<CR>
 map <silent> <C-j> :call WinMove('j')<CR>
 map <silent> <C-k> :call WinMove('k')<CR>
@@ -79,12 +119,46 @@ function! WinMove(key)
     endif
 endfunction
 
+"=====================================================
+" vimrc backgroud
+"=====================================================
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
 
-set clipboard=unnamedplus
+"=====================================================
+" Python-mode settings
+"=====================================================
 
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+" Disable autocomplete
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+
+" Documentation 
+let g:pymode_doc = 0
+let g:pymode_doc_key = 'K'
+" Check of code
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_ignore="E501,W601,C0110"
+" Check of code after save
+let g:pymode_lint_write = 1
+
+" virtualenv
+let g:pymode_virtualenv = 1
+
+" breakpoints
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_key = '<leader>b'
+
+" syntax
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+let g:pymode_folding = 0
+let g:pymode_run = 0
