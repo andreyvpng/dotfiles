@@ -21,15 +21,21 @@ call plug#begin('~/.vim/plugged')
     " Python
     Plug 'davidhalter/jedi-vim'
     Plug 'klen/python-mode'
-    "colorschemes
+    Plug 'plytophogy/vim-virtualenv'
+    " Style
     Plug 'chriskempson/base16-vim'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 "=====================================================
 " General settings
 "=====================================================
-"
+
 set wrap 
+
+set encoding=UTF-8
 
 syntax on
 " enable syntax highlighting
