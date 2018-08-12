@@ -71,10 +71,12 @@ let mapleader = ","
 map <C-C> "+y
 map <C-P> "+p
 nmap <F8> :TagbarToggle<CR>
-map <C-T> :tabnew<CR>
-"map <C-W> :tabclose<CR>
-"map <C-TAB> :tabnext<CR>
+map <leader>tt :tabnew<CR>
+map <leader>tw :tabclose<CR>
+map <leader>tn :tabnext<CR>
+
 map <leader>z :Goyo<CR>
+
 imap jk <ESC>
 
 "=====================================================
