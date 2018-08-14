@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'easymotion/vim-easymotion'
+    Plug 'ctrlpvim/ctrlp.vim'
     " HTML
     Plug 'mattn/emmet-vim'
     " Git
@@ -71,7 +72,7 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 let mapleader = ","
 
 map <C-C> "+y
-map <C-P> "+p
+"map <C-P> "+p
 nmap <F8> :TagbarToggle<CR>
 map <leader>tt :tabnew<CR>
 map <leader>tw :tabclose<CR>
@@ -206,3 +207,10 @@ function! NERDTreeOpenDjangoApp()
         endif
     endif
 endfunction
+
+"=====================================================
+" ctrlp
+"=====================================================
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
