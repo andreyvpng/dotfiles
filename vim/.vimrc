@@ -80,14 +80,6 @@ map <leader>z :Goyo<CR>
 imap jk <ESC>
 
 "=====================================================
-" NERDTree
-"=====================================================
-
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeDirArrowExpandable='+'
-let NERDTreeDirArrowCollapsible='~'
-
-"=====================================================
 " EasyMotion
 "=====================================================
 
@@ -136,8 +128,8 @@ endfunction
 "=====================================================
 
 if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
+    let base16colorspace=256
+    source ~/.vimrc_background
 endif
 
 "=====================================================
@@ -174,3 +166,36 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 let g:pymode_folding = 0
 let g:pymode_run = 0
+
+"=====================================================
+" NERDtree
+"=====================================================
+
+let NERDTreeShowHidden=1
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
+
+map <C-n> :NERDTreeToggle<CR>
+
+call NERDTreeAddKeyMap({
+    \ 'key': 'do',
+    \ 'callback': 'NERDTreeOpenDjangoApp',
+    \ 'quickhelpText': 'open django app with split' })
+
+function! NERDTreeOpenDjangoApp()
+    let list_of_files = ['urls.py', 'views.py', 'tests.py', 'models.py']
+
+    let n = g:NERDTreeFileNode.GetSelected()
+    NERDTreeClose
+    if n != {}
+        if n.path.isDirectory
+            for name_of_file in list_of_files
+                let l:file_path = '/'. join(n.path.pathSegments, '/'). '/'. name_of_file
+                execute 'split '.file_path
+            endfor
+            execute "normal! \<c-w>H"
+        else
+            echo "It's not directory"
+        endif
+    endif
+endfunction
