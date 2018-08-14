@@ -4,7 +4,7 @@
 
 call plug#begin('~/.vim/plugged')
     " Project navigation
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'easymotion/vim-easymotion'
     " HTML
@@ -29,6 +29,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+
+autocmd VimEnter *
 
 "=====================================================
 " General settings
@@ -172,8 +174,12 @@ let g:pymode_run = 0
 "=====================================================
 
 let NERDTreeShowHidden=1
+let NERDTreeWinSize=38
+let NERDTreeMinimalUI=1
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'
+
+let NERDTreeIgnore=['__pycache__', '.idea',]
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -186,6 +192,7 @@ function! NERDTreeOpenDjangoApp()
     let list_of_files = ['urls.py', 'views.py', 'tests.py', 'models.py']
 
     let n = g:NERDTreeFileNode.GetSelected()
+
     NERDTreeClose
     if n != {}
         if n.path.isDirectory
