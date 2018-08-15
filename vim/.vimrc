@@ -57,11 +57,9 @@ set clipboard=unnamedplus   " use the system clipboard for copy and paste
 
 let mapleader = '\'
 
-map <C-C> "+y
-"map <C-P> "+p
-map <leader>tt :tabnew<CR>
-map <leader>tw :tabclose<CR>
-map <leader>tn :tabnext<CR>
+" Use {number}gt for navigation tabs
+map <leader>tn :tabnew<CR>
+map <leader>tc :tabclose<CR>
 
 imap jk <ESC>
 
@@ -149,6 +147,8 @@ imap jk <ESC>
 
 " Goyo
     map <leader>z :Goyo<CR>
+    let g:goyo_width = 100
+    let g:goyo_height = 30
 
 " Tagbar
     nmap <F8> :TagbarToggle<CR>
@@ -182,7 +182,6 @@ function! Notes()
     let notes_dir = '~/notes'
     exec 'lcd' l:notes_dir
     exec 'CtrlP' l:notes_dir
-    exec 'NERDTreeCWD'
 endfunction
 command! Notes :call Notes()
 nnoremap <leader>n :Notes<CR>
