@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     " Other
     Plug 'jiangmiao/auto-pairs'
     Plug 'ervandew/supertab'
+    Plug 'elentok/plaintasks.vim'
     " Zen
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
@@ -59,7 +60,6 @@ let mapleader = '\'
 
 " Use {number}gt for navigation tabs
 map <leader>tn :tabnew<CR>
-map <leader>tc :tabclose<CR>
 
 imap jk <ESC>
 
@@ -113,7 +113,7 @@ imap jk <ESC>
     let NERDTreeDirArrowExpandable='+'
     let NERDTreeDirArrowCollapsible='~'
 
-    let NERDTreeIgnore=['__pycache__', '.idea',]
+    let NERDTreeIgnore=['__pycache__', '.idea', '*.swp']
 
     map <C-n> :NERDTreeToggle<CR>
 
