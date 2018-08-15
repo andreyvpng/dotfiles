@@ -31,8 +31,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-autocmd VimEnter *
-
 "=====================================================
 " General settings
 "=====================================================
@@ -184,7 +182,7 @@ let NERDTreeIgnore=['__pycache__', '.idea',]
 
 map <C-n> :NERDTreeToggle<CR>
 
-call NERDTreeAddKeyMap({
+autocmd VimEnter * call NERDTreeAddKeyMap({
     \ 'key': 'do',
     \ 'callback': 'NERDTreeOpenDjangoApp',
     \ 'quickhelpText': 'open django app with split' })
