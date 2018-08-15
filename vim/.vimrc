@@ -178,6 +178,15 @@ function! WinMove(key)
     endif
 endfunction
 
+function! Notes()
+    let notes_dir = '~/notes'
+    exec 'lcd' l:notes_dir
+    exec 'CtrlP' l:notes_dir
+    exec 'NERDTreeCWD'
+endfunction
+command! Notes :call Notes()
+nnoremap <leader>n :Notes<CR>
+
 "=====================================================
 " vimrc backgroud
 "=====================================================
