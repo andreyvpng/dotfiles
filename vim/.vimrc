@@ -55,7 +55,7 @@ set clipboard=unnamedplus   " use the system clipboard for copy and paste
 " Mapping
 "=====================================================
 
-let mapleader = ","
+let mapleader = '\'
 
 map <C-C> "+y
 "map <C-P> "+p
@@ -152,6 +152,9 @@ imap jk <ESC>
 
 " Tagbar
     nmap <F8> :TagbarToggle<CR>
+
+" Emmet
+    let g:user_emmet_leader_key=','
 
 "=====================================================
 " Functions
