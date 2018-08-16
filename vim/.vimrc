@@ -43,6 +43,8 @@ set nowrap
 set encoding=UTF-8
 syntax on                   " enable syntax highlighting
 set number                  " show line numbers
+set relativenumber
+set matchtime=1
 set ts=4                    " set tabs to have 4 spaces
 set autoindent              " indent when moving to the next line while writing code
 set expandtab               " expand tabs into spaces
@@ -58,10 +60,30 @@ set clipboard=unnamedplus   " use the system clipboard for copy and paste
 
 let mapleader = '\'
 
-" Use {number}gt for navigation tabs
-map <leader>tn :tabnew<CR>
+" uppercase
+inoremap <c-u> <ESC>viwUwi
+nnoremap <c-u> <ESC>viwU
 
-imap jk <ESC>
+" tabs
+" Use {number}gt for navigation tabs
+nnoremap <leader>+ :tabnew<cr>
+nnoremap <leader>( :tabprev<cr>
+nnoremap <leader>) :tabnext<cr>
+
+" wrap
+nnoremap <leader>W :set wrap!<cr>
+
+" disable arrow keys
+noremap <Up> <Nop>
+inoremap <Up> <Nop>
+noremap <Down> <Nop>
+inoremap <Down> <Nop>
+noremap <Left> <Nop>
+inoremap <Left> <Nop>
+noremap <Right> <Nop>
+inoremap <Right> <Nop>
+
+inoremap jk <ESC>
 
 "=====================================================
 " Settings of plugins
