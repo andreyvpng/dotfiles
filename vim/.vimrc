@@ -73,6 +73,9 @@ nnoremap <leader>) :tabnext<cr>
 " wrap
 nnoremap <leader>W :set wrap!<cr>
 
+" surround the word in double quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
 " disable arrow keys
 noremap <Up> <Nop>
 inoremap <Up> <Nop>
@@ -84,6 +87,13 @@ noremap <Right> <Nop>
 inoremap <Right> <Nop>
 
 inoremap jk <ESC>
+inoremap <esc> <nop>
+
+"=====================================================
+"  Abbreviations
+"=====================================================
+
+iabbrev an@ andrey-varfolomeev@protonmail.com
 
 "=====================================================
 " Settings of plugins
@@ -202,6 +212,8 @@ endfunction
 
 function! Notes()
     let notes_dir = '~/notes'
+    if $TERMUX == 1
+        let notes_dir = '~/storage/shared/notes'
     exec 'lcd' l:notes_dir
     exec 'CtrlP' l:notes_dir
 endfunction

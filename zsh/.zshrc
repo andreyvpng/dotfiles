@@ -109,3 +109,8 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '
 export PROJECT_HOME=$HOME/Devel 
 source $HOME/.local/bin/virtualenvwrapper.sh
 
+export TERMUX=0
+
+if [ -d /data/data/com.termux/files ]; then
+    TERMUX=1
+fi
