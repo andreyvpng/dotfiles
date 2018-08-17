@@ -183,7 +183,7 @@ iabbrev an@ andrey-varfolomeev@protonmail.com
     " https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
     "" function to list virtualenvs
     fun! ReturnVirtualEnvs(A,L,P)
-        return system("ls -d /Users/dhruv/.Envs/*/ \| cut -d'/' -f5")
+        return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
     endfun
 
     "" changing virtualenv should restart ycmserver
