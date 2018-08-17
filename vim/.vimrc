@@ -22,9 +22,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
     " Python
-    Plug 'davidhalter/jedi-vim'
-    Plug 'klen/python-mode'
+    "Plug 'davidhalter/jedi-vim'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     Plug 'plytophogy/vim-virtualenv'
+    Plug 'vim-scripts/indentpython.vim'
     " Style
     Plug 'chriskempson/base16-vim'
     Plug 'ryanoasis/vim-devicons'
@@ -39,19 +40,33 @@ call plug#end()
 " auto apply settings after save vimrc
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
-set nowrap 
-set encoding=UTF-8
-syntax on                   " enable syntax highlighting
+"style
+
+" For full syntax highlighting:
+let python_highlight_all=1
+syntax on
+
+set nowrap
 set number                  " show line numbers
 set relativenumber
-set matchtime=1
-set ts=4                    " set tabs to have 4 spaces
-set autoindent              " indent when moving to the next line while writing code
-set expandtab               " expand tabs into spaces
-set shiftwidth=4            " when using the >> or << commands, shift lines by 4 spaces
 set cursorline              " show a visual line under the cursor's current line
 set showmatch               " show the matching part of the pair for [] {} and ()
 set nofoldenable            " disable folding 
+
+" Tab settings
+set autoindent              " indent when moving to the next line while writing code
+set expandtab               " expand tabs into spaces
+set tabstop=4               " set tabs to have 4 spaces
+set softtabstop=4
+set shiftwidth=4            " when using the >> or << commands, shift lines by 4 spaces
+
+" search
+set incsearch
+set ignorecase
+set smartcase
+
+set encoding=UTF-8
+set matchtime=1
 set clipboard=unnamedplus   " use the system clipboard for copy and paste
 
 "=====================================================
@@ -109,34 +124,6 @@ iabbrev an@ andrey-varfolomeev@protonmail.com
     map <Leader>j <Plug>(easymotion-j)
     map <Leader>k <Plug>(easymotion-k)"
 
-" Python-mode
-
-    let g:pymode_rope = 0           " Disable autocomplete
-    let g:pymode_rope_completion = 0
-    let g:pymode_rope_complete_on_dot = 0
-
-    let g:pymode_doc = 0            " Documentation 
-    let g:pymode_doc_key = 'K'
-
-    let g:pymode_lint = 1           " Check of code
-    let g:pymode_lint_checker = "pyflakes,pep8"
-    let g:pymode_lint_ignore="E501,W601,C0110"
-
-    let g:pymode_lint_write = 1     " Check of code after save
-
-    let g:pymode_virtualenv = 1     " virtualenv
-
-    let g:pymode_breakpoint = 1     " breakpoints
-    let g:pymode_breakpoint_key = '<leader>b'
-
-    let g:pymode_syntax = 1         " syntax
-    let g:pymode_syntax_all = 1
-    let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-    let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-    let g:pymode_folding = 0
-    let g:pymode_run = 0
-
 " NERDTree
 
     let NERDTreeShowHidden=1
@@ -188,6 +175,20 @@ iabbrev an@ andrey-varfolomeev@protonmail.com
 " Emmet
     let g:user_emmet_leader_key=','
 
+" YCM
+    let g:ycm_autoclose_preview_window_after_completion=1
+    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+    
+    " https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
+    "" function to list virtualenvs
+    fun! ReturnVirtualEnvs(A,L,P)
+        return system("ls -d /Users/dhruv/.Envs/*/ \| cut -d'/' -f5")
+    endfun
+
+    "" changing virtualenv should restart ycmserver
+    command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+
 "=====================================================
 " Functions
 "=====================================================
@@ -214,6 +215,7 @@ function! Notes()
     let notes_dir = '~/notes'
     if $TERMUX == 1
         let notes_dir = '~/storage/shared/notes'
+    endif
     exec 'lcd' l:notes_dir
     exec 'CtrlP' l:notes_dir
 endfunction
