@@ -69,6 +69,12 @@ augroup VIMRC
         \ setl softtabstop=2 |
         \ setl shiftwidth=2
 
+    " Create dir
+    autocmd BufWritePre *
+        \ if !isdirectory(expand("<afile>:p:h")) |
+        \   call mkdir(expand("<afile>:p:h"), "p") |
+        \ endif
+
     " Comment
     autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
     autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
