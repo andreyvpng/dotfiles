@@ -34,11 +34,46 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 "=====================================================
-" General settings
+" vimrc backgroud
 "=====================================================
 
-" auto apply settings after save vimrc
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
+
+"=====================================================
+"  Autocmd
+"=====================================================
+
+augroup VIMRC
+    " auto apply settings after save vimrc
+    autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+
+    autocmd BufWritePost * GitGutter
+
+    au BufNewFile,BufRead *.py
+        \ setl tabstop=4 |
+        \ setl softtabstop=4 |
+        \ setl shiftwidth=4 |
+        \ setl textwidth=79 |
+        \ setl expandtab |
+        \ setl autoindent |
+        \ setl fileformat=unix
+
+    au BufNewFile,BufRead *.js,*.html,*.css
+        \ setl tabstop=2 |
+        \ setl softtabstop=2 |
+        \ setl shiftwidth=2
+
+    " Comment
+    autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+augroup END
+
+"=====================================================
+" General settings
+"=====================================================
 
 "style
 
@@ -73,10 +108,11 @@ set clipboard=unnamedplus   " use the system clipboard for copy and paste
 " Mapping
 "=====================================================
 
-let mapleader = '\'
+let mapleader=' '
+let maplocalleader='\'
 
 " uppercase
-inoremap <c-u> <ESC>viwUwi
+inoremap <c-u> <ESC>viwUea
 nnoremap <c-u> <ESC>viwU
 
 " tabs
@@ -91,18 +127,11 @@ nnoremap <leader>W :set wrap!<cr>
 " surround the word in double quotes
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
-" disable arrow keys
-noremap <Up> <Nop>
-inoremap <Up> <Nop>
-noremap <Down> <Nop>
-inoremap <Down> <Nop>
-noremap <Left> <Nop>
-inoremap <Left> <Nop>
-noremap <Right> <Nop>
-inoremap <Right> <Nop>
-
 inoremap jk <ESC>
 inoremap <esc> <nop>
+
+" Editing vimrc
+nnoremap <leader>ev :split $MYVIMRC<cr>
 
 "=====================================================
 "  Abbreviations
@@ -221,12 +250,3 @@ function! Notes()
 endfunction
 command! Notes :call Notes()
 nnoremap <leader>n :Notes<CR>
-
-"=====================================================
-" vimrc backgroud
-"=====================================================
-
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
