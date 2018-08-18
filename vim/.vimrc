@@ -17,8 +17,10 @@ call plug#begin('~/.vim/plugged')
     " Other
     Plug 'jiangmiao/auto-pairs'
     Plug 'ervandew/supertab'
-    Plug 'elentok/plaintasks.vim'
     Plug 'gcmt/taboo.vim'
+    " Organize
+    Plug 'mrtazz/vim-plan'
+    Plug 'elentok/plaintasks.vim'
     " Zen
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
@@ -131,8 +133,43 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 inoremap jk <ESC>
 inoremap <esc> <nop>
 
+"dp - delete paramenters
+onoremap p i(
+
 " Editing vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
+
+" vim-plan
+nnoremap <leader>pw :OpenWeekPlan<CR>
+noremap <leader>pm :OpenMonthPlan<CR>
+noremap <leader>py :OpenYearPlan<CR>
+noremap <leader>pd :Today<CR>
+
+" EasyMotion
+nnoremap s <Plug>(easymotion-overwin-f)
+nnoremap s <Plug>(easymotion-overwin-f2)
+noremap <Leader>j <Plug>(easymotion-j)
+noremap <Leader>k <Plug>(easymotion-k)"
+
+" NERDTree
+noremap <C-n> :NERDTreeToggle<CR>
+
+" Tagbar
+nnoremap <F8> :TagbarToggle<CR>
+" Goya
+nnoremap <leader>z :Goyo<CR>
+
+" YCM
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" My func WinMove
+map <silent> <C-h> :call WinMove('h')<CR>
+map <silent> <C-j> :call WinMove('j')<CR>
+map <silent> <C-k> :call WinMove('k')<CR>
+map <silent> <C-l> :call WinMove('l')<CR>
+
+" My func Notes
+nnoremap <leader>n :Notes<CR>
 
 "=====================================================
 "  Abbreviations
@@ -145,89 +182,69 @@ iabbrev an@ andrey-varfolomeev@protonmail.com
 "=====================================================
 
 " EasyMotion
-
-    let g:EasyMotion_do_mapping = 0 " Disable default mappings
-    let g:EasyMotion_smartcase = 1
-
-    nmap s <Plug>(easymotion-overwin-f)
-    nmap s <Plug>(easymotion-overwin-f2)
-    map <Leader>j <Plug>(easymotion-j)
-    map <Leader>k <Plug>(easymotion-k)"
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
 
 " NERDTree
+let NERDTreeShowHidden=1
+let NERDTreeWinSize=38
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
 
-    let NERDTreeShowHidden=1
-    let NERDTreeWinSize=38
-    let NERDTreeMinimalUI=1
-    let NERDTreeDirArrowExpandable='+'
-    let NERDTreeDirArrowCollapsible='~'
+let NERDTreeIgnore=['__pycache__', '.idea', '*.swp']
 
-    let NERDTreeIgnore=['__pycache__', '.idea', '*.swp']
+autocmd VimEnter * call NERDTreeAddKeyMap({
+    \ 'key': 'do',
+    \ 'callback': 'NERDTreeOpenDjangoApp',
+    \ 'quickhelpText': 'open django app with split' })
 
-    map <C-n> :NERDTreeToggle<CR>
+function! NERDTreeOpenDjangoApp()
+    let list_of_files = ['urls.py', 'views.py', 'tests.py', 'models.py']
 
-    autocmd VimEnter * call NERDTreeAddKeyMap({
-        \ 'key': 'do',
-        \ 'callback': 'NERDTreeOpenDjangoApp',
-        \ 'quickhelpText': 'open django app with split' })
+    let n = g:NERDTreeFileNode.GetSelected()
 
-    function! NERDTreeOpenDjangoApp()
-        let list_of_files = ['urls.py', 'views.py', 'tests.py', 'models.py']
-
-        let n = g:NERDTreeFileNode.GetSelected()
-
-        NERDTreeClose
-        if n != {}
-            if n.path.isDirectory
-                for name_of_file in list_of_files
-                    let l:file_path = '/'. join(n.path.pathSegments, '/'). '/'. name_of_file
-                    execute 'split '.file_path
-                endfor
-                let l:name_of_tab = n.path.pathSegments[-1]
-                execute 'TabooRename ' . name_of_tab
-            else
-                echo "It's not directory"
-            endif
+    NERDTreeClose
+    if n != {}
+        if n.path.isDirectory
+            for name_of_file in list_of_files
+                let l:file_path = '/'. join(n.path.pathSegments, '/'). '/'. name_of_file
+                execute 'split '.file_path
+            endfor
+            let l:name_of_tab = n.path.pathSegments[-1]
+            execute 'TabooRename ' . name_of_tab
+        else
+            echo "It's not directory"
         endif
-    endfunction
+    endif
+endfunction
 
 " Ctrlp
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Goyo
-    map <leader>z :Goyo<CR>
-    let g:goyo_width = 100
-    let g:goyo_height = 30
-
-" Tagbar
-    nmap <F8> :TagbarToggle<CR>
+let g:goyo_width = 100
+let g:goyo_height = 30
 
 " Emmet
-    let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key=','
 
 " YCM
-    let g:ycm_autoclose_preview_window_after_completion=1
-    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+let g:ycm_autoclose_preview_window_after_completion=1
     
-    " https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
-    "" function to list virtualenvs
-    fun! ReturnVirtualEnvs(A,L,P)
-        return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
-    endfun
+" https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
+"" function to list virtualenvs
+fun! ReturnVirtualEnvs(A,L,P)
+    return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
+endfun
 
-    "" changing virtualenv should restart ycmserver
-    command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+"" changing virtualenv should restart ycmserver
+command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
 
 "=====================================================
 " Functions
 "=====================================================
-
-map <silent> <C-h> :call WinMove('h')<CR>
-map <silent> <C-j> :call WinMove('j')<CR>
-map <silent> <C-k> :call WinMove('k')<CR>
-map <silent> <C-l> :call WinMove('l')<CR>
 
 function! WinMove(key)
     let t:curwin = winnr()
@@ -251,4 +268,3 @@ function! Notes()
     exec 'CtrlP' l:notes_dir
 endfunction
 command! Notes :call Notes()
-nnoremap <leader>n :Notes<CR>
