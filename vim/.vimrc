@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'ervandew/supertab'
     Plug 'elentok/plaintasks.vim'
+    Plug 'gcmt/taboo.vim'
     " Zen
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
@@ -76,7 +77,7 @@ augroup END
 "=====================================================
 
 "style
-
+set sessionoptions+=tabpages,globals
 " For full syntax highlighting:
 let python_highlight_all=1
 syntax on
@@ -182,7 +183,8 @@ iabbrev an@ andrey-varfolomeev@protonmail.com
                     let l:file_path = '/'. join(n.path.pathSegments, '/'). '/'. name_of_file
                     execute 'split '.file_path
                 endfor
-                execute "normal! \<c-w>H"
+                let l:name_of_tab = n.path.pathSegments[-1]
+                execute 'TabooRename ' . name_of_tab
             else
                 echo "It's not directory"
             endif
