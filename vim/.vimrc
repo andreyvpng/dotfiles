@@ -150,6 +150,7 @@ nnoremap <leader>pw :OpenWeekPlan<CR>
 noremap <leader>pm :OpenMonthPlan<CR>
 noremap <leader>py :OpenYearPlan<CR>
 noremap <leader>pd :Today<CR>
+noremap <leader>pt :Timestamp<CR>
 
 " EasyMotion
 map s <Plug>(easymotion-overwin-f)
@@ -238,6 +239,21 @@ let g:user_emmet_leader_key=','
 
 " YCM
 let g:ycm_autoclose_preview_window_after_completion=1
+
+" Airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
     
 " https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
 "" function to list virtualenvs
@@ -274,3 +290,5 @@ function! Notes()
     exec 'CtrlP' l:notes_dir
 endfunction
 command! Notes :call Notes()
+
+command! Timestamp execute 'normal o### '.strftime("%I:%M%p")
