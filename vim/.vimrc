@@ -152,10 +152,10 @@ noremap <leader>py :OpenYearPlan<CR>
 noremap <leader>pd :Today<CR>
 
 " EasyMotion
-nnoremap s <Plug>(easymotion-overwin-f)
-nnoremap s <Plug>(easymotion-overwin-f2)
-noremap <Leader>j <Plug>(easymotion-j)
-noremap <Leader>k <Plug>(easymotion-k)"
+map s <Plug>(easymotion-overwin-f)
+map s <Plug>(easymotion-overwin-f2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)"
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
