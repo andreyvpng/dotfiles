@@ -8,7 +8,8 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-ZSH_THEME="andrey"
+ZSH_THEME="oxide"
+#ZSH_THEME="muse"
 #ZSH_THEME="robbyrussell"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -102,6 +103,15 @@ export SSH_KEY_PATH="~/.ssh/git_rsa"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export LS_OPTIONS='--group-directories-first --time-style=+"%d/%m/%Y %H:%M:%S" --color=auto --file-type --human-readable'
+alias ls="ls $LS_OPTIONS"
+alias mkdir="mkdir -v"
+alias dd="dd status=progress"
+
+alias sl=ls
+
+alias ll="ls -l $LS_OPTIONS"
+alias la="ls -la $LS_OPTIONS"
 
 export WORKON_HOME=$HOME/.virtualenvs 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 
