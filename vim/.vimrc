@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     Plug 'plytophogy/vim-virtualenv'
     Plug 'vim-scripts/indentpython.vim'
+    Plug 'nvie/vim-flake8'
     " Style
     Plug 'chriskempson/base16-vim'
     Plug 'ryanoasis/vim-devicons'
@@ -52,6 +53,8 @@ endif
 augroup VIMRC
     " auto apply settings after save vimrc
     autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+
+    autocmd BufWritePost *.py call Flake8()
 
     autocmd BufWritePost * GitGutter
 
@@ -263,6 +266,21 @@ endfun
 
 "" changing virtualenv should restart ycmserver
 command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+
+" Flake8
+highlight link Flake8_Error      Error
+highlight link Flake8_Warning    WarningMsg
+highlight link Flake8_Complexity WarningMsg
+highlight link Flake8_Naming     WarningMsg
+highlight link Flake8_PyFlake    WarningMsg
+let g:flake8_show_in_file=1
+let g:flake8_show_in_gutter=1
+let g:flake8_show_quickfix=1
+let g:flake8_error_marker='EE'     " set error marker to 'EE'
+let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
+let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
+let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
+let g:flake8_naming_marker=''      " disable naming warnings
 
 "=====================================================
 " Functions
