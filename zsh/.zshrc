@@ -22,7 +22,7 @@ export TERM=xterm-256color
 export SSH_KEY_PATH="~/.ssh/git_rsa"
 
 # alias
-export LS_OPTIONS='--group-directories-first --time-style=+"%d/%m/%Y %H:%M:%S" --color=auto --file-type --human-readable'
+export LS_OPTIONS='--group-directories-first --color=auto -h'
 alias ls="ls $LS_OPTIONS"
 alias mkdir="mkdir -v"
 alias dd="dd status=progress"
