@@ -59,6 +59,8 @@ augroup VIMRC
 
     autocmd BufWritePost * GitGutter
 
+    autocmd BufEnter *.py call SetAppDir()
+
     au BufNewFile,BufRead *.py
         \ setl tabstop=4 |
         \ setl softtabstop=4 |
@@ -148,7 +150,7 @@ inoremap <esc> <nop>
 onoremap p i(
 
 " Editing vimrc
-nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>:vsplit ~/.zshrc<cr>
 
 " vim-plan
 nnoremap <leader>pw :OpenWeekPlan<CR>
@@ -182,6 +184,18 @@ map <silent> <C-l> :call WinMove('l')<CR>
 
 " My func Notes
 nnoremap <leader>n :Notes<CR>
+
+" My func RelatedFile(for Django Projects)
+nnoremap <leader>1 :call RelatedFile ("models.py")<cr>
+nnoremap <leader>2 :call RelatedFile ("views.py")<cr>
+nnoremap <leader>3 :call RelatedFile ("urls.py")<cr>
+nnoremap <leader>4 :call RelatedFile ("admin.py")<cr>
+nnoremap <leader>5 :call RelatedFile ("tests.py")<cr>
+nnoremap <leader>6 :call RelatedFile ( "templates/" )<cr>
+nnoremap <leader>7 :call RelatedFile ( "templatetags/" )<cr>
+nnoremap <leader>8 :call RelatedFile ( "management/" )<cr>
+nnoremap <leader>0 :e settings.py<cr>
+nnoremap <leader>9 :e urls.py<cr>
 
 "=====================================================
 "  Abbreviations
@@ -312,3 +326,25 @@ endfunction
 command! Notes :call Notes()
 
 command! Timestamp execute 'normal o### '.strftime("%I:%M%p")
+
+let g:last_relative_dir = ''
+fun! RelatedFile(file)
+    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
+        exec "edit %:h/" . a:file
+        let g:last_relative_dir = expand("%:h") . '/'
+        return ''
+    endif
+    if g:last_relative_dir != ''
+        exec "edit " . g:last_relative_dir . a:file
+        return ''
+    endif
+    echo "Cant determine where relative file is : " . a:file
+    return ''
+endfun
+
+fun! SetAppDir()
+    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
+        let g:last_relative_dir = expand("%:h") . '/'
+        return ''
+    endif
+endfun

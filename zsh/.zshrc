@@ -32,6 +32,10 @@ alias sl=ls
 alias ll="ls -l $LS_OPTIONS"
 alias la="ls -la $LS_OPTIONS"
 
+alias cdot="cd ~/dotfiles"
+alias cdev="cd ~/dev"
+alias ..="cd .."
+
 # virtualenv
 export WORKON_HOME=$HOME/.virtualenvs 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 
