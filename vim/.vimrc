@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'ervandew/supertab'
     Plug 'gcmt/taboo.vim'
+    Plug 'tmhedberg/SimpylFold'
     " Organize
     Plug 'mrtazz/vim-plan'
     Plug 'elentok/plaintasks.vim'
@@ -98,7 +99,8 @@ set number                  " show line numbers
 set relativenumber
 set cursorline              " show a visual line under the cursor's current line
 set showmatch               " show the matching part of the pair for [] {} and ()
-set nofoldenable            " disable folding 
+set foldmethod=indent
+set foldlevel=99
 
 " Tab settings
 set autoindent              " indent when moving to the next line while writing code
