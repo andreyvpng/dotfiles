@@ -156,11 +156,12 @@ inoremap <esc> <nop>
 onoremap p i(
 
 " Editing vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>:vsplit ~/.zshrc<cr>
+nnoremap <leader>ev :tabnew<cr>:TabooRename CONFIG<cr>:e $MYVIMRC<cr>:vsplit ~/.zshrc<cr>
 
 " Save and quit
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>aq :qall<cr>
 
 " vim-plan
 nnoremap <leader>pw :OpenWeekPlan<CR>
