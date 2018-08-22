@@ -25,6 +25,9 @@ call plug#begin('~/.vim/plugged')
     " Organize
     Plug 'mrtazz/vim-plan'
     Plug 'elentok/plaintasks.vim'
+    " Snips
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
     " Zen
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
@@ -308,6 +311,11 @@ let g:flake8_naming_marker=''      " disable naming warnings
 " Sessions
 let g:session_autosave="yes"
 let g:session_autoload="yes"
+
+" Snips
+let g:UltiSnipsExpandTrigger="sus"
+let g:UltiSnipsJumpForwardTrigger="<leader>j"
+let g:UltiSnipsJumpBackwardTrigger="<leader>k"
 
 "=====================================================
 " Functions
