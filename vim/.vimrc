@@ -19,6 +19,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'ervandew/supertab'
     Plug 'gcmt/taboo.vim'
     Plug 'tmhedberg/SimpylFold'
+    "Plug 'PhilRunninger/vim-sessions'
+    Plug 'xolox/vim-session'
+    Plug 'xolox/vim-misc'
     " Organize
     Plug 'mrtazz/vim-plan'
     Plug 'elentok/plaintasks.vim'
@@ -301,6 +304,10 @@ let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
 let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
 let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
 let g:flake8_naming_marker=''      " disable naming warnings
+
+" Sessions
+let g:session_autosave="yes"
+let g:session_autoload="yes"
 
 "=====================================================
 " Functions
