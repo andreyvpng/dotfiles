@@ -152,6 +152,10 @@ onoremap p i(
 " Editing vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>:vsplit ~/.zshrc<cr>
 
+" Save and quit
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+
 " vim-plan
 nnoremap <leader>pw :OpenWeekPlan<CR>
 noremap <leader>pm :OpenMonthPlan<CR>
