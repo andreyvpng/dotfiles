@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ervandew/supertab'
     Plug 'gcmt/taboo.vim'
     Plug 'tmhedberg/SimpylFold'
-    "Plug 'PhilRunninger/vim-sessions'
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
     " Organize
@@ -163,6 +162,9 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>aq :qall<cr>
 
+" Open Session
+nnoremap <leader>os :OpenSession 
+
 " vim-plan
 nnoremap <leader>pw :OpenWeekPlan<CR>
 noremap <leader>pm :OpenMonthPlan<CR>
@@ -194,7 +196,7 @@ map <silent> <C-k> :call WinMove('k')<CR>
 map <silent> <C-l> :call WinMove('l')<CR>
 
 " My func Notes
-nnoremap <leader>n :Notes<CR>
+nnoremap <leader>n :tabnew<cr>:TabooRename Notes<cr>:Notes<CR>
 
 " My func RelatedFile(for Django Projects)
 nnoremap <leader>1 :call RelatedFile ("models.py")<cr>
@@ -311,12 +313,13 @@ let g:flake8_naming_marker=''      " disable naming warnings
 
 " Sessions
 let g:session_autosave="yes"
-let g:session_autoload="yes"
+let g:session_autoload="no"
+let g:session_command_aliases = 1
 
 " Snips
 let g:UltiSnipsExpandTrigger="sus"
-let g:UltiSnipsJumpForwardTrigger="<leader>j"
-let g:UltiSnipsJumpBackwardTrigger="<leader>k"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "=====================================================
 " Functions
