@@ -246,7 +246,7 @@ let g:EasyMotion_smartcase = 1
 
 " NERDTree
 let NERDTreeShowHidden=1
-let NERDTreeWinSize=38
+let NERDTreeWinSize=28
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'
