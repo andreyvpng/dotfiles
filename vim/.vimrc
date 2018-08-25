@@ -31,8 +31,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
     Plug 'amix/vim-zenroom2'
     " Python
-    "Plug 'davidhalter/jedi-vim'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    Plug 'davidhalter/jedi-vim'
     Plug 'plytophogy/vim-virtualenv'
     Plug 'vim-scripts/indentpython.vim'
     Plug 'nvie/vim-flake8'
@@ -41,6 +40,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    " Game
+    Plug 'johngrib/vim-game-code-break'
 call plug#end()
 
 "=====================================================
@@ -65,6 +66,12 @@ augroup VIMRC
     autocmd BufWritePost * GitGutter
 
     autocmd BufEnter *.py call SetAppDir()
+
+    " Autocomplete
+    autocmd FileType python set omnifunc=jedi#completions
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
     au BufNewFile,BufRead *.py
         \ setl tabstop=4 |
@@ -100,6 +107,15 @@ set sessionoptions+=tabpages,globals
 " For full syntax highlighting:
 let python_highlight_all=1
 syntax on
+
+if has('gui_running')
+    set guioptions-=T " no toolbar
+    set guioptions-=m " no menu
+    set guioptions-=r " no right scroll
+    set guioptions-=L " no left scroll
+
+    set guifont=mononoki\ 12
+endif
 
 set nowrap
 set number                  " show line numbers
@@ -163,7 +179,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>aq :qall<cr>
 
 " Open Session
-nnoremap <leader>os :OpenSession 
+nnoremap <leader>os :OpenSession<cr>
 
 " vim-plan
 nnoremap <leader>pw :OpenWeekPlan<CR>
@@ -188,6 +204,10 @@ nnoremap <leader>z :Goyo<CR>
 
 " YCM
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" git fugitive
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
 
 " My func WinMove
 map <silent> <C-h> :call WinMove('h')<CR>
