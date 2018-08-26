@@ -125,6 +125,7 @@ set showmatch               " show the matching part of the pair for [] {} and (
 set foldmethod=indent
 set foldlevel=99
 
+
 " Tab settings
 set autoindent              " indent when moving to the next line while writing code
 set expandtab               " expand tabs into spaces
@@ -165,13 +166,14 @@ nnoremap <leader>W :set wrap!<cr>
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
 inoremap jk <ESC>
+inoremap JK <ESC>
 inoremap <esc> <nop>
 
 "dp - delete paramenters
 onoremap p i(
 
 " Editing vimrc
-nnoremap <leader>ev :tabnew<cr>:TabooRename CONFIG<cr>:e $MYVIMRC<cr>:vsplit ~/.zshrc<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 
 " Save and quit
 nnoremap <leader>w :w<cr>
@@ -217,6 +219,9 @@ map <silent> <C-l> :call WinMove('l')<CR>
 
 " My func Notes
 nnoremap <leader>n :tabnew<cr>:TabooRename Notes<cr>:Notes<CR>
+
+" My func WordProcessorMode
+nnoremap WP :WP<cr>
 
 " My func RelatedFile(for Django Projects)
 nnoremap <leader>1 :call RelatedFile ("models.py")<cr>
@@ -344,6 +349,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "=====================================================
 " Functions
 "=====================================================
+
+function! WordProcessorMode()
+    setlocal spell spelllang=ru_ru,en_us
+    setlocal wrap
+    setlocal linebreak
+    setlocal nolist
+
+    " russian keyboard
+    set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\«ZXCVBNM<>
+    set iminsert=0
+    set imsearch=0
+endfu
+command! WP call WordProcessorMode()
 
 function! WinMove(key)
     let t:curwin = winnr()
