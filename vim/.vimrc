@@ -67,12 +67,6 @@ augroup VIMRC
 
     autocmd BufEnter *.py call SetAppDir()
 
-    " Autocomplete
-    autocmd FileType python set omnifunc=jedi#completions
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
     au BufNewFile,BufRead *.py
         \ setl tabstop=4 |
         \ setl softtabstop=4 |
