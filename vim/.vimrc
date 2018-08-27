@@ -103,6 +103,7 @@ let python_highlight_all=1
 syntax on
 let g:airline_theme='base16_default'
 
+
 if has('gui_running')
     set guioptions-=T " no toolbar
     set guioptions-=m " no menu
