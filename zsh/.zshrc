@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="wezm"
+ZSH_THEME="refined"
 
 plugins=(
   git
@@ -35,6 +35,7 @@ alias la="ls -la $LS_OPTIONS"
 alias cdot="cd ~/dotfiles"
 alias cdev="cd ~/dev"
 alias ..="cd .."
+alias vim="nvim" # lol
 
 # virtualenv
 export WORKON_HOME=$HOME/.virtualenvs 

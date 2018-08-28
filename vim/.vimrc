@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tmhedberg/SimpylFold'
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
+    Plug 'scrooloose/nerdcommenter'
     " Organize
     Plug 'mrtazz/vim-plan'
     Plug 'elentok/plaintasks.vim'
@@ -43,15 +44,6 @@ call plug#begin('~/.vim/plugged')
     " Game
     Plug 'johngrib/vim-game-code-break'
 call plug#end()
-
-"=====================================================
-" vimrc backgroud
-"=====================================================
-
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
 
 "=====================================================
 "  Autocmd
@@ -97,22 +89,24 @@ augroup END
 "=====================================================
 
 "style
-set sessionoptions+=tabpages,globals
 " For full syntax highlighting:
 let python_highlight_all=1
 syntax on
-let g:airline_theme='base16_default'
-
 
 if has('gui_running')
     set guioptions-=T " no toolbar
     set guioptions-=m " no menu
     set guioptions-=r " no right scroll
     set guioptions-=L " no left scroll
-
-    set guifont=mononoki\ 12
 endif
 
+set termguicolors
+set fillchars+=vert:│       " full split line
+set scrolloff=3
+let base16colorspace=256
+colorscheme base16-dracula
+let g:airline_theme='dracula'
+set sessionoptions+=tabpages,globals
 set nowrap
 set number                  " show line numbers
 set relativenumber
@@ -120,7 +114,7 @@ set cursorline              " show a visual line under the cursor's current line
 set showmatch               " show the matching part of the pair for [] {} and ()
 set foldmethod=indent
 set foldlevel=99
-
+set t_Co=256
 
 " Tab settings
 set autoindent              " indent when moving to the next line while writing code
@@ -170,6 +164,13 @@ onoremap p i(
 
 " Editing vimrc
 nnoremap <leader>ev :e $MYVIMRC<cr>
+
+" Fix common typos
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Q! q!
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
 
 " Save and quit
 nnoremap <leader>w :w<cr>
@@ -247,11 +248,11 @@ let g:EasyMotion_smartcase = 1
 
 " NERDTree
 let NERDTreeShowHidden=1
+let NERDTreeWinPos='right'
 let NERDTreeWinSize=28
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'
-
 let NERDTreeIgnore=['__pycache__', '.idea', '*.swp']
 
 autocmd VimEnter * call NERDTreeAddKeyMap({
@@ -308,15 +309,6 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
     
-" https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
-"" function to list virtualenvs
-fun! ReturnVirtualEnvs(A,L,P)
-    return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
-endfun
-
-"" changing virtualenv should restart ycmserver
-command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
-
 " Flake8
 highlight link Flake8_Error      Error
 highlight link Flake8_Warning    WarningMsg
@@ -338,9 +330,16 @@ let g:session_autoload="no"
 let g:session_command_aliases = 1
 
 " Snips
-let g:UltiSnipsExpandTrigger="sus"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" gitgutter
+let g:gitgutter_sign_added = '│' " U+2502
+let g:gitgutter_sign_removed = '│' " U+2502
+let g:gitgutter_sign_removed_first_line = '│' " U+2502
+let g:gitgutter_sign_modified = '│' " U2
+let g:gitgutter_sign_modified_removed = '│' " U+2502
 
 "=====================================================
 " Functions
