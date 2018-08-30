@@ -201,5 +201,5 @@ endfu
 command! WP call WordProcessorMode()
 nnoremap WP :WP<cr>
 
-command! Timestamp execute 'normal o### '.strftime("%I:%M%p")
+command! Timestamp execute 'normal o# '.strftime("%d %B %Y %H:%M")
 noremap <leader>pt :Timestamp<CR>

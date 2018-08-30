@@ -10,6 +10,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'cohama/agit.vim'
 " Other
 Plug 'jiangmiao/auto-pairs'
 Plug 'ervandew/supertab'
@@ -146,3 +147,4 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#enabled = 1
