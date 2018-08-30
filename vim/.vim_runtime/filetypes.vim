@@ -14,7 +14,9 @@ augroup VIMRC_filetypes
     au BufNewFile,BufRead *.js,*.html,*.css
         \ setl tabstop=2 |
         \ setl softtabstop=2 |
-        \ setl shiftwidth=2
+        \ setl shiftwidth=2 |
+        \ setl nowrap
+
 augroup END
 
 " My func RelatedFile(for Django Projects)

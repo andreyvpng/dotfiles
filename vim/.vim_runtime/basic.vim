@@ -37,9 +37,12 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" wrap
+set wrap
+
 augroup VIMRC_basic
     " Auto source vimrc
-    autocmd! bufwritepost $MYVIMRC,~/.vim_runtime/*.vim source $MYVIMRC
+    autocmd! bufwritepost $MYVIMRC,~/.vim_runtime/*.vim source ~/.vimrc
     autocmd BufWritePre *
         \ if !isdirectory(expand("<afile>:p:h")) |
         \   call mkdir(expand("<afile>:p:h"), "p") |
@@ -56,8 +59,7 @@ set clipboard=unnamedplus
 
 syntax on
 
-let base16colorspace=256
-colorscheme base16-default-dark
+colorscheme delek
 
 "set termguicolors
 set t_Co=256
@@ -118,7 +120,6 @@ nnoremap <leader>W :set wrap!<cr>
 " toggle relativenumber
 nnoremap <leader>N :set relativenumber!<cr>
 
-
 """""""""""""""""""""""""""""
 " => Moving
 """""""""""""""""""""""""""""
@@ -126,6 +127,9 @@ nnoremap <leader>N :set relativenumber!<cr>
 " map to search
 nnoremap <space> /
 nnoremap <c-space> ?
+map / :echo "no god! please nooo!"<cr>
+map ? :echo "no god! please nooo!"<cr>
+
 
 " mapping for tabs
 nnoremap <leader>tn :tabnew<cr>

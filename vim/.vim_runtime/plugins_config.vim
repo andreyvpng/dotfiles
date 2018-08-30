@@ -41,6 +41,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'johngrib/vim-game-code-break'
 call plug#end()
 
+" Colorscheme
+let base16colorspace=256
+colorscheme base16-default-dark
+hi VertSplit ctermbg=NONE guibg=NONE
+
 " EasyMotion
 map s <Plug>(easymotion-overwin-f)
 map s <Plug>(easymotion-overwin-f2)
@@ -57,8 +62,8 @@ let NERDTreeShowHidden=1
 let NERDTreeWinPos='right'
 let NERDTreeWinSize=28
 let NERDTreeMinimalUI=1
-let NERDTreeDirArrowExpandable='+'
-let NERDTreeDirArrowCollapsible='~'
+let NERDTreeDirArrowExpandable='🗀'
+let NERDTreeDirArrowCollapsible='🗁'
 let NERDTreeIgnore=['__pycache__', '.idea', '*.swp']
 
 " Ctrlp
@@ -103,7 +108,14 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " gitgutter
+nnoremap <leader>gt :GitGutterToggle<cr>
+
 autocmd BufWritePost * GitGutter
+
+let g:gitgutter_enabled = 0
+let g:gitgutter_signs = 1
+let g:gitgutter_async = 1
+
 let g:gitgutter_sign_added = '│' " U+2502
 let g:gitgutter_sign_removed = '│' " U+2502
 let g:gitgutter_sign_removed_first_line = '│' " U+2502
@@ -125,7 +137,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:Powerline_symbols = 'fancy'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
