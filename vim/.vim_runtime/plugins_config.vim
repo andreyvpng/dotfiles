@@ -20,6 +20,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'scrooloose/nerdcommenter'
+Plug 'amix/open_file_under_cursor.vim'
 " Organize
 Plug 'mrtazz/vim-plan'
 Plug 'elentok/plaintasks.vim'
@@ -52,7 +53,7 @@ hi VertSplit ctermbg=NONE guibg=NONE
 map s <Plug>(easymotion-overwin-f)
 map s <Plug>(easymotion-overwin-f2)
 map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)"
+map <Leader>k <Plug>(easymotion-k)
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
@@ -137,8 +138,10 @@ let g:airline_theme='base16_default'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 0
+
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -147,8 +150,10 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 0
+
 let g:airline_section_a = airline#section#create_right(['mode', 'spell'])
 let g:airline_section_b = airline#section#create_right(['branch'])
 let g:airline_section_c = airline#section#create_right(['%f'])

@@ -38,7 +38,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Show numbers of lines
-set number
+set nonumber
 
 " wrap
 set wrap
