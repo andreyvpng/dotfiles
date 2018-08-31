@@ -37,6 +37,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" Show numbers of lines
+set number
+
 " wrap
 set wrap
 
@@ -94,7 +97,7 @@ set nofoldenable
 " => General mapping
 """""""""""""""""""""""""""""
 
-let mapleader = ","
+let mapleader = "\\"
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
@@ -117,8 +120,8 @@ nnoremap <c-u> <ESC>viwU
 " toggle wrap
 nnoremap <leader>W :set wrap!<cr>
 
-" toggle relativenumber
-nnoremap <leader>N :set relativenumber!<cr>
+" toggle number
+nnoremap <leader>N :set number!<cr>
 
 """""""""""""""""""""""""""""
 " => Moving

@@ -79,10 +79,9 @@ let g:goyo_width = 100
 let g:goyo_height = 30
 
 " Emmet
-let g:user_emmet_leader_key='.'
+let g:user_emmet_leader_key=','
 
 " Flake8
-autocmd BufWritePost *.py call Flake8()
 highlight link Flake8_Error      Error
 highlight link Flake8_Warning    WarningMsg
 highlight link Flake8_Complexity WarningMsg

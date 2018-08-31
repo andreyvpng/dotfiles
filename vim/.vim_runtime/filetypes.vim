@@ -1,33 +1,37 @@
-augroup VIMRC_filetypes
+""""""""""""""""""""""""""""""
+" => JS, HTML, CSS
+""""""""""""""""""""""""""""""
 
-    autocmd BufWritePost *.py call Flake8()
+au FileType javascript,html,css
+    \ setl tabstop=2 |
+    \ setl softtabstop=2 |
+    \ setl shiftwidth=2 |
+    \ setl nowrap
 
-    au BufNewFile,BufRead *.py
-        \ setl tabstop=4 |
-        \ setl softtabstop=4 |
-        \ setl shiftwidth=4 |
-        \ setl textwidth=79 |
-        \ setl expandtab |
-        \ setl autoindent |
-        \ setl fileformat=unix
 
-    au BufNewFile,BufRead *.js,*.html,*.css
-        \ setl tabstop=2 |
-        \ setl softtabstop=2 |
-        \ setl shiftwidth=2 |
-        \ setl nowrap
+""""""""""""""""""""""""""""""
+" => Python
+""""""""""""""""""""""""""""""
 
-augroup END
+au FileType python
+    \ setl tabstop=4 |
+    \ setl softtabstop=4 |
+    \ setl shiftwidth=4 |
+    \ setl textwidth=79 |
+    \ setl expandtab |
+    \ setl autoindent |
+    \ setl fileformat=unix |
+    \ autocmd BufWritePost *.py call Flake8() |
+    \ nnoremap <buffer> <F5> :exec '!python3' shellescape(@%, 1)<cr>
 
 " My func RelatedFile(for Django Projects)
 nnoremap <leader>1 :call RelatedFile ("models.py")<cr>
 nnoremap <leader>2 :call RelatedFile ("views.py")<cr>
 nnoremap <leader>3 :call RelatedFile ("urls.py")<cr>
-nnoremap <leader>4 :call RelatedFile ("admin.py")<cr>
-nnoremap <leader>5 :call RelatedFile ("tests.py")<cr>
-nnoremap <leader>6 :call RelatedFile ( "templates/" )<cr>
-nnoremap <leader>7 :call RelatedFile ( "templatetags/" )<cr>
-nnoremap <leader>8 :call RelatedFile ( "management/" )<cr>
+nnoremap <leader>4 :call RelatedFile ("forms.py")<cr>
+nnoremap <leader>5 :call RelatedFile ("admin.py")<cr>
+nnoremap <leader>6 :call RelatedFile ("tests.py")<cr>
+nnoremap <leader>7 :call RelatedFile ("templates/")<cr>
 nnoremap <leader>0 :e settings.py<cr>
 nnoremap <leader>9 :e urls.py<cr>
 
