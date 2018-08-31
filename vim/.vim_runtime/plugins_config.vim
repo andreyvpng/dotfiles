@@ -4,6 +4,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/mru.vim'
 " HTML
 Plug 'mattn/emmet-vim'
 " Git
@@ -148,3 +149,7 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#enabled = 1
+
+" MRU
+let MRU_Max_Entries = 400
+map <leader>f :MRU<CR>
