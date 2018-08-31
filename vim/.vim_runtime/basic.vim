@@ -89,7 +89,7 @@ set mat=2
 " show a visual line under the cursor's current line
 set cursorline
 
-" disable folding 
+" disable folding
 set nofoldenable
 
 
@@ -156,7 +156,12 @@ map <silent> <C-l> :call WinMove('l')<CR>
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=%f       " path to the file
+set statusline+=%=      " to align to right
+set statusline+=%l      " current line
+set statusline+=/       " separator
+set statusline+=%L      " total lines
+set statusline+=%y      " file type
 
 
 """""""""""""""""""""""""""""

@@ -148,6 +148,14 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline_section_a = airline#section#create_right(['mode', 'spell'])
+let g:airline_section_b = airline#section#create_right(['branch'])
+let g:airline_section_c = airline#section#create_right(['%f'])
+let g:airline_section_x = airline#section#create_right(['%{virtualenv#statusline()}'])
+let g:airline_section_y = airline#section#create_right(['filetype'])
+let g:airline_section_z = airline#section#create_right(['%l, %c'])
+
 
 " MRU
 let MRU_Max_Entries = 400
