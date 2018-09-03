@@ -1,53 +1,61 @@
 call plug#begin('~/.vim/plugged')
+
 " Project navigation
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/mru.vim'
+
 " HTML
 Plug 'mattn/emmet-vim'
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'cohama/agit.vim'
-" Other
-Plug 'jiangmiao/auto-pairs'
-Plug 'ervandew/supertab'
-Plug 'gcmt/taboo.vim'
-Plug 'tmhedberg/SimpylFold'
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
-Plug 'scrooloose/nerdcommenter'
-Plug 'amix/open_file_under_cursor.vim'
+
 " Organize
 Plug 'mrtazz/vim-plan'
 Plug 'elentok/plaintasks.vim'
-" Snips
+
+" Code
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tmhedberg/SimpylFold'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+
 " Zen
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
+
 " Python
 Plug 'davidhalter/jedi-vim'
 Plug 'plytophogy/vim-virtualenv'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
+Plug 'fisadev/vim-isort'
+
 " Style
 Plug 'chriskempson/base16-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Game
-Plug 'johngrib/vim-game-code-break'
+
+" Other
+Plug 'gcmt/taboo.vim'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+Plug 'amix/open_file_under_cursor.vim'
+
 call plug#end()
 
 " Colorscheme
 let base16colorspace=256
-colorscheme base16-default-dark
-hi VertSplit ctermbg=NONE guibg=NONE
+colorscheme base16-gruvbox-dark-hard
 
 " EasyMotion
 map s <Plug>(easymotion-overwin-f)
@@ -154,7 +162,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 0
 
-let g:airline_section_a = airline#section#create_right(['mode', 'spell'])
+let g:airline_section_a = airline#section#create_right(['mode'])
 let g:airline_section_b = airline#section#create_right(['branch'])
 let g:airline_section_c = airline#section#create_right(['%f'])
 let g:airline_section_x = airline#section#create_right(['%{virtualenv#statusline()}'])

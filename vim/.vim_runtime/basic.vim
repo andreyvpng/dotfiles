@@ -43,14 +43,11 @@ set nonumber
 " wrap
 set wrap
 
-augroup VIMRC_basic
-    " Auto source vimrc
-    autocmd! bufwritepost $MYVIMRC,~/.vim_runtime/*.vim source ~/.vimrc
-    autocmd BufWritePre *
-        \ if !isdirectory(expand("<afile>:p:h")) |
-        \   call mkdir(expand("<afile>:p:h"), "p") |
-        \ endif
-augroup END
+" automatically creating directory
+autocmd BufWritePre *
+    \ if !isdirectory(expand("<afile>:p:h")) |
+    \   call mkdir(expand("<afile>:p:h"), "p") |
+    \ endif
 
 " Use the system clipboard for copy and paste
 set clipboard=unnamedplus
@@ -62,13 +59,16 @@ set clipboard=unnamedplus
 
 syntax on
 
+" override color scheme to make vertical separator fit
+autocmd ColorScheme * hi VertSplit ctermbg=NONE guibg=NONE
+
+"set split separator
+set fillchars=vert:│
+
 colorscheme delek
 
 "set termguicolors
 set t_Co=256
-
-set fillchars=vert:│
-hi VertSplit ctermbg=NONE guibg=NONE
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -98,6 +98,9 @@ set nofoldenable
 """""""""""""""""""""""""""""
 
 let mapleader = "\\"
+
+" source vimrc
+nnoremap <leader>r :source ~/.vimrc<cr>
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
@@ -130,9 +133,6 @@ nnoremap <leader>N :set number!<cr>
 " map to search
 nnoremap <space> /
 nnoremap <c-space> ?
-map / :echo "no god! please nooo!"<cr>
-map ? :echo "no god! please nooo!"<cr>
-
 
 " mapping for tabs
 nnoremap <leader>tn :tabnew<cr>
@@ -168,6 +168,7 @@ set statusline+=%y      " file type
 " => Spell Checking
 """""""""""""""""""""""""""""
 
+" toggle spell
 nnoremap <leader>ss :setlocal spell! spelllang=ru_ru,en_us<cr>
 
 
