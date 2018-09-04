@@ -6,7 +6,6 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/mru.vim'
-
 " HTML
 Plug 'mattn/emmet-vim'
 
@@ -27,13 +26,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tmhedberg/SimpylFold'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Zen
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
 
 " Python
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'plytophogy/vim-virtualenv'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
@@ -106,7 +106,9 @@ let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
 let g:flake8_naming_marker=''      " disable naming warnings
 
 " Sessions
-nnoremap <leader>os :OpenSession<cr>
+nnoremap <leader>so :SessionOpen<cr>
+nnoremap <leader>sc :SessionClose<cr>
+nnoremap <leader>ss :SessionSave<cr>
 
 let g:session_autosave="yes"
 let g:session_autoload="no"
@@ -160,6 +162,7 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline#extensions#tabline#enabled = 1
+
 let g:airline#extensions#virtualenv#enabled = 0
 
 let g:airline_section_a = airline#section#create_right(['mode'])
@@ -173,3 +176,15 @@ let g:airline_section_z = airline#section#create_right(['%l, %c'])
 " MRU
 let MRU_Max_Entries = 400
 map <leader>f :MRU<CR>
+
+" YCM
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" https://github.com/Valloric/YouCompleteMe/issues/380#issuecomment-88398601
+"" function to list virtualenvs
+fun! ReturnVirtualEnvs(A,L,P)
+    return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
+endfun
+"" changing virtualenv should restart ycmserver
+command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
