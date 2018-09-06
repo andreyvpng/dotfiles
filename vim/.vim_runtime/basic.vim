@@ -38,7 +38,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Show numbers of lines
-set nonumber
+set number
 
 " wrap
 set wrap
@@ -63,9 +63,10 @@ syntax on
 autocmd ColorScheme * hi VertSplit ctermbg=NONE guibg=NONE
 
 "set split separator
-set fillchars=vert:│
+set fillchars+=vert:│
 
 colorscheme delek
+set background=dark
 
 "set termguicolors
 set t_Co=256

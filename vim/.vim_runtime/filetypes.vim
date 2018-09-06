@@ -2,7 +2,8 @@
 " => JS, HTML, CSS
 """"""""""""""""""""""""""""""
 
-au FileType javascript,html,css
+"au FileType javascript,html,css,htmldjango
+au BufNewFile,BufRead *.js,*.html,*.css
     \ setl tabstop=2 |
     \ setl softtabstop=2 |
     \ setl shiftwidth=2 |
@@ -21,7 +22,6 @@ au FileType python
     \ setl expandtab |
     \ setl autoindent |
     \ setl fileformat=unix |
-    \ autocmd BufWritePost *.py call Flake8() |
     \ nnoremap <buffer> <F5> :exec '!python3' shellescape(@%, 1)<cr>
 
 " My func RelatedFile(for Django Projects)

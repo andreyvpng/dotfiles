@@ -6,6 +6,8 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/mru.vim'
+Plug 'vim-scripts/bufexplorer.zip'
+
 " HTML
 Plug 'mattn/emmet-vim'
 
@@ -20,6 +22,7 @@ Plug 'mrtazz/vim-plan'
 Plug 'elentok/plaintasks.vim'
 
 " Code
+Plug 'w0rp/ale'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -40,13 +43,13 @@ Plug 'nvie/vim-flake8'
 Plug 'fisadev/vim-isort'
 
 " Style
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Other
-Plug 'gcmt/taboo.vim'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'amix/open_file_under_cursor.vim'
@@ -55,7 +58,7 @@ call plug#end()
 
 " Colorscheme
 let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+colorscheme gruvbox
 
 " EasyMotion
 map s <Plug>(easymotion-overwin-f)
@@ -163,6 +166,19 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline#extensions#tabline#enabled = 1
 
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_buffers = 0
+
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#buffers_label = ''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+
 let g:airline#extensions#virtualenv#enabled = 0
 
 let g:airline_section_a = airline#section#create_right(['mode'])
@@ -188,3 +204,16 @@ fun! ReturnVirtualEnvs(A,L,P)
 endfun
 "" changing virtualenv should restart ycmserver
 command! -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+
+nmap <silent> <leader>a <Plug>(ale_next_wrap)
+
+" Disabling highlighting
+let g:ale_set_highlights = 1
