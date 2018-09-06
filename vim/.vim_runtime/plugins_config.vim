@@ -147,7 +147,7 @@ noremap <leader>py :OpenYearPlan<CR>
 noremap <leader>pd :Today<CR>
 
 " Airline
-let g:airline_theme='base16_default'
+let g:airline_theme='gruvbox'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
