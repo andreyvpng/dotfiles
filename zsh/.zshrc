@@ -38,6 +38,14 @@ alias cdev="cd ~/dev"
 alias ..="cd .."
 alias vim="nvim" # lol
 
+# git a
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+
 # virtualenv
 export WORKON_HOME=$HOME/.virtualenvs 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 
