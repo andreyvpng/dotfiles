@@ -213,6 +213,12 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\]
+nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
+
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
 
 " Disabling highlighting
