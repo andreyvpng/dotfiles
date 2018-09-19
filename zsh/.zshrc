@@ -36,7 +36,6 @@ alias la="ls -la $LS_OPTIONS"
 alias cdot="cd ~/dotfiles"
 alias cdev="cd ~/dev"
 alias ..="cd .."
-alias vim="nvim" # lol
 
 # git a
 alias gs='git status '
